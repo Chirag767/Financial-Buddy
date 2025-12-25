@@ -1,0 +1,18 @@
+.ai-view {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.ai-view__header { margin-bottom: 20px; }
+.ai-view__title { font-size: 1.5rem; color: #fff; margin: 0; }
+.ai-view__subtitle { color: #64748b; font-size: 0.9rem; margin-top: 5px; }
+
+.ai-view__chat-container {
+    flex-grow: 1;
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}

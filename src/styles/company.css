@@ -1,0 +1,137 @@
+/* =========================================
+   1. OVERRIDES
+   ========================================= */
+
+.company-theme {
+    background-color: #0f172a !important;
+    background-image: none !important;
+    min-height: 100vh;
+}
+
+.main-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand-section h1 {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+/* =========================================
+   2. EXECUTIVE VIEW (STATS)
+   ========================================= */
+.ov-card__value--blue {
+    color: #3b82f6; /* Solid Trust Blue */
+}
+
+/* Tax Estimator Box */
+.ov-card h4 {
+    margin-top: 0;
+    color: #fbbf24; /* Amber/Gold for Taxes */
+}
+
+/* =========================================
+   3. PAYROLL & EMPLOYEE LIST
+   ========================================= */
+.ov-item__tag {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #94a3b8; 
+    margin-left: 8px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.delete-icon-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 10px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.delete-icon-btn:hover {
+    opacity: 1;
+}
+
+/* =========================================
+   4. INVOICES & STATUS BADGES
+   ========================================= */
+.ov-title-green {
+    color: #10b981 !important; /* Emerald Green */
+    font-weight: bold;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.ov-title-purple {
+    color: #a78bfa !important; /* Soft Purple */
+    font-style: italic;
+}
+
+.mark-paid-btn {
+    font-size: 0.8rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid #10b981;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mark-paid-btn:hover {
+    background: #10b981;
+    color: #000;
+}
+
+/* =========================================
+   5. FORMS & INPUTS GRID
+   ========================================= */
+.company-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: #cbd5e1; /* Lighter slate for labels */
+    margin-bottom: 5px;
+    margin-left: 2px;
+}
+
+.me-input {
+    background: rgba(30, 41, 59, 0.5); /* Slightly lighter than bg */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.me-input:focus {
+    border-color: #3b82f6;
+    outline: none;
+    background: rgba(30, 41, 59, 0.8);
+}
+
+.me-btn {
+    height: 42px;
+    margin-top: 0;
+    background-color: #3b82f6; /* Solid corporate blue button */
+}
+
+.me-btn:hover {
+    background-color: #2563eb;
+}

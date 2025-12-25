@@ -1,0 +1,110 @@
+.ub-view { animation: fadeIn 0.4s ease-out; }
+
+.ub-header { margin-bottom: 30px; }
+.ub-header__title { font-size: 1.5rem; color: #fff; margin: 0; }
+.ub-header__subtitle { color: #64748b; font-size: 0.9rem; margin-top: 5px; }
+
+.ub-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* --- FORM CARD --- */
+.ub-card--form {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.ub-card__title { font-size: 1.1rem; color: #f1f5f9; margin-bottom: 20px; }
+
+.ub-form { display: flex; flex-direction: column; gap: 15px; }
+
+.ub-input-group label {
+    display: block;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.ub-input {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.ub-btn {
+    background: #3b82f6;
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* --- LIST SECTION --- */
+.ub-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.ub-item-card {
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 20px;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.ub-item-card:hover { transform: translateY(-4px); }
+
+/* Priority Modifiers */
+.ub-item-card--high { border-left: 4px solid #ef4444; background: rgba(239, 68, 68, 0.05); }
+.ub-item-card--medium { border-left: 4px solid #f59e0b; }
+.ub-item-card--low { border-left: 4px solid #3b82f6; }
+
+.ub-item-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
+
+.ub-badge {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.ub-badge--high { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+.ub-badge--medium { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+.ub-badge--low { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+
+.ub-delete-btn { background: none; border: none; color: #475569; cursor: pointer; font-size: 1rem; }
+.ub-delete-btn:hover { color: #ef4444; }
+
+.ub-item-title { font-size: 1.1rem; color: #f8fafc; margin: 0 0 10px 0; }
+
+.ub-item-main { display: flex; flex-direction: column; margin-bottom: 20px; }
+.ub-item-total { font-size: 1.5rem; font-weight: 700; color: #fff; }
+.ub-item-date { font-size: 0.8rem; color: #64748b; }
+
+.ub-item-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+}
+.ub-item-footer p { font-size: 0.75rem; color: #94a3b8; margin: 0; }
+.ub-item-monthly { font-size: 1.1rem; font-weight: 600; color: #10b981; }
+
+@media (max-width: 1000px) {
+    .ub-grid { grid-template-columns: 1fr; }
+}

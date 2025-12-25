@@ -1,0 +1,112 @@
+.me-container {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.me-header {
+    margin-bottom: 30px;
+}
+
+.me-header__title {
+    font-size: 1.5rem;
+    color: #f8fafc;
+    margin: 0;
+}
+
+.me-header__subtitle {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* --- GRID --- */
+.me-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.me-card {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.me-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Color Accents */
+.me-card--cash { border-top: 4px solid #f59e0b; } /* Amber */
+.me-card--sub { border-top: 4px solid #8b5cf6; }  /* Violet */
+.me-card--inc { border-top: 4px solid #10b981; }  /* Emerald */
+
+.me-card__icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.me-card__title {
+    font-size: 1.25rem;
+    color: #f8fafc;
+    margin: 0 0 8px 0;
+}
+
+.me-card__desc {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+/* --- FORMS --- */
+.me-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.me-input {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.me-input:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.me-btn {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.me-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.me-btn--cash { background: #f59e0b; color: #451a03; }
+.me-btn--sub { background: #8b5cf6; color: white; }
+.me-btn--inc { background: #10b981; color: #064e3b; }
+
+.me-btn:hover { opacity: 0.9; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
