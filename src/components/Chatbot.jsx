@@ -3,7 +3,8 @@ import ReactMarkdown from "react-markdown";
 import "../styles/chatbot.css";
 import ConfirmModal from "./ConfirmModal";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+// ensure this base URL is correct (no trailing slash usually safer here if you add it later)
+const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
 const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }) => {
   const email = localStorage.getItem("email");
@@ -42,7 +43,8 @@ const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }
     setIsLoading(true);
 
     try {
-      const response = await fetch(API_URL, {
+      // --- FIX IS HERE: Added "/chat" to the URL ---
+      const response = await fetch(`${BASE_URL}/chat`, { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -58,13 +60,14 @@ const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }
         const botMsg = { id: Date.now() + 1, text: data.reply, sender: "bot" };
         setMessages((prev) => [...prev, botMsg]);
       } else {
-        throw new Error(data.details || data.error || "Unknown Error");
+        // Handle non-200 responses (like 404 or 500)
+        throw new Error(data.details || data.error || `Server Error: ${response.status}`);
       }
     } catch (error) {
       console.error("Chat Error:", error);
       setMessages((prev) => [
         ...prev, 
-        { id: Date.now(), text: `⚠️ Error: ${error.message || "Brain freeze!"}`, sender: "bot" }
+        { id: Date.now(), text: `⚠️ Error: ${error.message || "Could not connect to AI."}`, sender: "bot" }
       ]);
     } finally {
       setIsLoading(false);
