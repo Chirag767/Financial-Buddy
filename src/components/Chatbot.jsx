@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import "../styles/chatbot.css";
 import ConfirmModal from "./ConfirmModal";
 
-const BASE_URL = process.env.REACT_APP_API_URL || `${window.location.origin}/api`;
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }) => {
   const email = localStorage.getItem("email");
@@ -42,7 +42,7 @@ const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${BASE_URL}/chat`, { 
+      const response = await fetch(`${API_URL}/ai/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -58,13 +58,13 @@ const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }
         const botMsg = { id: Date.now() + 1, text: data.reply, sender: "bot" };
         setMessages((prev) => [...prev, botMsg]);
       } else {
-        throw new Error(data.details || data.error || `Server Error: ${response.status}`);
+        throw new Error(data.details || data.error || "Unknown Error");
       }
     } catch (error) {
       console.error("Chat Error:", error);
       setMessages((prev) => [
         ...prev, 
-        { id: Date.now(), text: `⚠️ Error: ${error.message || "Could not connect to AI."}`, sender: "bot" }
+        { id: Date.now(), text: `⚠️ Error: ${error.message || "Brain freeze!"}`, sender: "bot" }
       ]);
     } finally {
       setIsLoading(false);
