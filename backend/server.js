@@ -17,7 +17,10 @@ const User = require("./models/users");
 const app = express();
 
 /* Middleware */
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:3000", "https://financial-buddy-lime.vercel.app/"], // Add your Vercel URL here
+  credentials: true
+}));
 app.use(express.json());
 
 /* MongoDB connection */
