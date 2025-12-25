@@ -17,14 +17,25 @@ const User = require("./models/users");
 const app = express();
 
 
-const corsOptions = {
-  origin: 'https://financial-buddy-lime.vercel.app', // Only allow requests from your Vercel frontend
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify allowed methods
-  credentials: true, // If you need to send cookies/authorization headers
-  optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://financial-buddy-lime.vercel.app"
+];
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 app.use(express.json());
 
