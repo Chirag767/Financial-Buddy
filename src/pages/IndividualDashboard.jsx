@@ -11,6 +11,9 @@ import AiBuddyView from "../components/dashboard/AiBuddyView";
 
 import "../styles/individualdash.css";
 
+// --- FIX: USE DYNAMIC API URL ---
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+
 const IndividualDashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("overview");
@@ -44,6 +47,7 @@ const IndividualDashboard = () => {
       setIncomes(validIncomes);
       setGoals(goalData || []);
 
+      // Check if "Tech Corp Salary" exists to detect if bank mock data was added
       const hasBankSignature = 
           validIncomes.some(inc => inc.source === "Tech Corp Salary")
 
@@ -65,7 +69,8 @@ const IndividualDashboard = () => {
   const handleLinkBank = async () => {
     const loadId = toast.loading("Connecting to Mock Bank...");
     try {
-      const response = await fetch("http://localhost:5000/api/bank/link-mock-bank", {
+      // --- FIX IS HERE: Use dynamic API_URL instead of localhost ---
+      const response = await fetch(`${API_URL}/bank/link-mock-bank`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userEmail: email }),
@@ -86,6 +91,7 @@ const IndividualDashboard = () => {
       }
     } catch (error) {
       toast.dismiss(loadId);
+      console.error("Bank Link Error:", error);
       toast.error("Network Error: Is backend running?");
     }
   };
