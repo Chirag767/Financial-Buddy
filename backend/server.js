@@ -16,8 +16,16 @@ const User = require("./models/users");
 
 const app = express();
 
-/* Middleware */
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://financial-buddy-lime.vercel.app', // Only allow requests from your Vercel frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify allowed methods
+  credentials: true, // If you need to send cookies/authorization headers
+  optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 /* MongoDB connection */
