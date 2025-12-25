@@ -3,7 +3,6 @@ import ReactMarkdown from "react-markdown";
 import "../styles/chatbot.css";
 import ConfirmModal from "./ConfirmModal";
 
-// ensure this base URL is correct (no trailing slash usually safer here if you add it later)
 const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
 const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }) => {
@@ -43,7 +42,6 @@ const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }
     setIsLoading(true);
 
     try {
-      // --- FIX IS HERE: Added "/chat" to the URL ---
       const response = await fetch(`${BASE_URL}/chat`, { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -60,7 +58,6 @@ const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }
         const botMsg = { id: Date.now() + 1, text: data.reply, sender: "bot" };
         setMessages((prev) => [...prev, botMsg]);
       } else {
-        // Handle non-200 responses (like 404 or 500)
         throw new Error(data.details || data.error || `Server Error: ${response.status}`);
       }
     } catch (error) {
