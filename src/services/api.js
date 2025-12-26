@@ -98,12 +98,14 @@ export const updateInvoiceStatus = async (id, status) => {
 
 // --- COMPANY: TAXES ---
 export const getTaxPayments = async (email) => {
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
   if (!email) return [];
   const res = await axios.get(`${API_URL}/company/taxes`, { params: { userEmail: email } });
   return res.data;
 };
 
 export const addTaxPayment = async (data) => {
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
   const res = await axios.post(`${API_URL}/company/taxes`, data);
   return res.data;
 };

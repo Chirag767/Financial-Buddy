@@ -69,7 +69,6 @@ const PayrollView = ({ employees, refreshData }) => {
                     <span className="ov-item__name">{emp.name}</span>
                     <div style={{display:'flex', gap:'10px', alignItems:'center'}}>
                         <span className="ov-item__tag">{emp.position}</span>
-                        {/* 3. Display Start Date */}
                         <span style={{color:'#666', fontSize:'0.8rem'}}>
                             Joined: {emp.startDate ? new Date(emp.startDate).toLocaleDateString() : 'N/A'}
                         </span>

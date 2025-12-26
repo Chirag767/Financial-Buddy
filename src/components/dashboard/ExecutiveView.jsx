@@ -110,7 +110,7 @@ const ExecutiveView = ({ employees, invoices, expenses }) => {
 
              <form onSubmit={handlePayTax} style={{display:'flex', gap:'10px', alignItems:'flex-end'}}>
                 <div style={{flex:1}}>
-                    <label style={{fontSize:'0.8rem', color:'#aaa'}}>Record Payment</label>
+                    <label style={{fontSize:'0.8rem', color:'#aaa'}}>Record Tax Paid</label>
                     <input 
                         className="me-input" 
                         type="number" 
@@ -121,7 +121,7 @@ const ExecutiveView = ({ employees, invoices, expenses }) => {
                     />
                 </div>
                 <div style={{flex:1}}>
-                     <label style={{fontSize:'0.8rem', color:'#aaa'}}>Date</label>
+                     <label style={{fontSize:'0.8rem', color:'#aaa'}}>Date </label>
                      <input 
                         className="me-input" 
                         type="date" 
@@ -150,7 +150,7 @@ const ExecutiveView = ({ employees, invoices, expenses }) => {
                                 <span className="ov-item__date">{new Date(tax.date).toLocaleDateString()}</span>
                             </div>
                             <div className="ov-item__amount ov-item__amount--green">
-                                - ₹{Number(tax.amount).toLocaleString()}
+                                - ₹ {Number(tax.amount).toLocaleString()}
                             </div>
                         </div>
                     ))}
