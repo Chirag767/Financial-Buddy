@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Employee = require("../models/Employee");
 const Invoice = require("../models/Invoice");
+const TaxPayment = require("../models/TaxPayment");
 
 // --- EMPLOYEE ENDPOINTS ---
 
