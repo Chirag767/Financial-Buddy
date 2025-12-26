@@ -4,7 +4,8 @@ import toast from "react-hot-toast";
 import ConfirmModal from "../ConfirmModal";
 
 const PayrollView = ({ employees, refreshData }) => {
-  const [formData, setFormData] = useState({ name: "", position: "", salary: "" });
+  // 1. Add startDate to state
+  const [formData, setFormData] = useState({ name: "", position: "", salary: "", startDate: "" });
   const [deleteId, setDeleteId] = useState(null);
 
   const handleAdd = async (e) => {
@@ -12,24 +13,22 @@ const PayrollView = ({ employees, refreshData }) => {
     const userEmail = localStorage.getItem("email");
     try {
       await addEmployee({ ...formData, userEmail });
-      setFormData({ name: "", position: "", salary: "" });
+      // Reset form including date
+      setFormData({ name: "", position: "", salary: "", startDate: "" });
       refreshData();
       toast.success("Employee Added");
     } catch (e) { toast.error("Failed to add"); }
   };
 
-  const handleDelete = async (id) => {
-    setDeleteId(id);
-  };
+  const handleDelete = async (id) => { setDeleteId(id); };
+  
   const confirmDelete = async () => {
     if (!deleteId) return;
     try {
         await deleteEmployee(deleteId);
         refreshData();
         toast.success("Employee removed");
-    } catch(e) {
-        toast.error("Failed to remove");
-    }
+    } catch(e) { toast.error("Failed to remove"); }
     setDeleteId(null);
   };
 
@@ -38,7 +37,7 @@ const PayrollView = ({ employees, refreshData }) => {
       <ConfirmModal 
         isOpen={!!deleteId}
         title="Remove Employee?"
-        message="Are you sure you want to remove this employee? This affects payroll records."
+        message="Are you sure? This affects payroll records."
         onConfirm={confirmDelete}
         onCancel={() => setDeleteId(null)}
       />
@@ -47,11 +46,18 @@ const PayrollView = ({ employees, refreshData }) => {
       
       {/* Add Form */}
       <div className="ov-card ov-card--main" style={{marginBottom: '20px'}}>
-        <form onSubmit={handleAdd} style={{display:'flex', gap:'10px', flexWrap:'wrap'}}>
+        <form onSubmit={handleAdd} style={{display:'flex', gap:'10px', flexWrap:'wrap', alignItems: 'flex-end'}}>
             <input className="me-input" placeholder="Name" value={formData.name} onChange={e=>setFormData({...formData, name:e.target.value})} required />
             <input className="me-input" placeholder="Position" value={formData.position} onChange={e=>setFormData({...formData, position:e.target.value})} required />
-            <input className="me-input" type="number" placeholder="Salary (₹)" value={formData.salary} onChange={e=>setFormData({...formData, salary:e.target.value})} required />
-            <button className="me-btn me-btn--cash">Add Staff</button>
+            <input className="me-input" type="number" placeholder="Monthly Salary (₹)" value={formData.salary} onChange={e=>setFormData({...formData, salary:e.target.value})} required />
+            
+            {/* 2. Start Date Input */}
+            <div style={{display:'flex', flexDirection:'column'}}>
+                <label style={{color:'#aaa', fontSize:'0.8rem', marginBottom:'4px'}}>Start Date</label>
+                <input className="me-input" type="date" value={formData.startDate} onChange={e=>setFormData({...formData, startDate:e.target.value})} />
+            </div>
+
+            <button className="me-btn me-btn--cash" style={{height: '42px'}}>Add Staff</button>
         </form>
       </div>
 
@@ -61,10 +67,16 @@ const PayrollView = ({ employees, refreshData }) => {
             <div key={emp._id} className="ov-item">
                 <div className="ov-item__info">
                     <span className="ov-item__name">{emp.name}</span>
-                    <span className="ov-item__tag">{emp.position}</span>
+                    <div style={{display:'flex', gap:'10px', alignItems:'center'}}>
+                        <span className="ov-item__tag">{emp.position}</span>
+                        {/* 3. Display Start Date */}
+                        <span style={{color:'#666', fontSize:'0.8rem'}}>
+                            Joined: {emp.startDate ? new Date(emp.startDate).toLocaleDateString() : 'N/A'}
+                        </span>
+                    </div>
                 </div>
                 <div className="ov-item__amount ov-item__amount--red">
-                    ₹{Number(emp.salary).toLocaleString()}
+                    ₹{Number(emp.salary).toLocaleString()}/mo
                     <button onClick={()=>handleDelete(emp._id)} style={{marginLeft:'15px', background:'none', border:'none', cursor:'pointer'}}>🗑️</button>
                 </div>
             </div>

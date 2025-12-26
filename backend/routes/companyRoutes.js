@@ -18,10 +18,18 @@ router.get("/employees", async (req, res) => {
 
 router.post("/employees", async (req, res) => {
   try {
-    const { name, position, salary, userEmail } = req.body;
+    const { name, position, salary, startDate, userEmail } = req.body;
+    
     if (!name || !salary || !userEmail) return res.status(400).json({ error: "Missing fields" });
 
-    const newEmp = new Employee({ name, position, salary, userEmail });
+    const newEmp = new Employee({ 
+        name, 
+        position, 
+        salary, 
+        startDate: startDate || new Date(), 
+        userEmail 
+    });
+    
     await newEmp.save();
     res.status(201).json(newEmp);
   } catch (err) {
