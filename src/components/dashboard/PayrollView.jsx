@@ -54,7 +54,7 @@ const PayrollView = ({ employees, refreshData }) => {
             {/* 2. Start Date Input */}
             <div style={{display:'flex', flexDirection:'column'}}>
                 <label style={{color:'#aaa', fontSize:'0.8rem', marginBottom:'4px'}}>Start Date</label>
-                <input className="me-input" type="date" value={formData.startDate} onChange={e=>setFormData({...formData, startDate:e.target.value})} />
+                <input className="me-input" type="date" value={formData.startDate} onChange={e=>setFormData({...formData, startDate:e.target.value})} required/>
             </div>
 
             <button className="me-btn me-btn--cash" style={{height: '42px'}}>Add Staff</button>

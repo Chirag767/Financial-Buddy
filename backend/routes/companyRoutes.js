@@ -20,13 +20,13 @@ router.post("/employees", async (req, res) => {
   try {
     const { name, position, salary, startDate, userEmail } = req.body;
     
-    if (!name || !salary || !userEmail) return res.status(400).json({ error: "Missing fields" });
+    if (!name || !salary || !userEmail || !startDate) return res.status(400).json({ error: "Missing fields" });
 
     const newEmp = new Employee({ 
         name, 
         position, 
         salary, 
-        startDate: startDate || new Date(), 
+        startDate,
         userEmail 
     });
     
@@ -86,6 +86,38 @@ router.patch("/invoices/:id/status", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: "Failed to update status" });
   }
+});
+
+
+// -- TAX PAYMENTS ENDPOINTS ---
+
+router.get("/taxes", async (req, res) => {
+    try {
+        const { userEmail } = req.query;
+        if (!userEmail) return res.status(400).json({ error: "Email required" });
+        const taxes = await TaxPayment.find({ userEmail }).sort({ date: -1 });
+        res.json(taxes);
+    } catch (e) {
+        res.status(500).json({ error: "Failed to fetch tax history" });
+    }
+});
+
+router.post("/taxes", async (req, res) => {
+    try {
+        const { amount, date, notes, userEmail } = req.body;
+        if (!amount || !userEmail) return res.status(400).json({ error: "Amount required" });
+
+        const newTax = new TaxPayment({
+            amount,
+            date: date || new Date(),
+            notes,
+            userEmail
+        });
+        await newTax.save();
+        res.status(201).json(newTax);
+    } catch (e) {
+        res.status(500).json({ error: "Failed to record tax" });
+    }
 });
 
 module.exports = router;

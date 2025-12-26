@@ -95,3 +95,15 @@ export const updateInvoiceStatus = async (id, status) => {
   const res = await axios.patch(`${API_URL}/company/invoices/${id}/status`, { status });
   return res.data;
 };
+
+// --- COMPANY: TAXES ---
+export const getTaxPayments = async (email) => {
+  if (!email) return [];
+  const res = await axios.get(`${API_URL}/company/taxes`, { params: { userEmail: email } });
+  return res.data;
+};
+
+export const addTaxPayment = async (data) => {
+  const res = await axios.post(`${API_URL}/company/taxes`, data);
+  return res.data;
+};
