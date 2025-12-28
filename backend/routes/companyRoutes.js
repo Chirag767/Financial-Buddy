@@ -106,11 +106,11 @@ router.get("/taxes", async (req, res) => {
 router.post("/taxes", async (req, res) => {
     try {
         const { amount, date, notes, userEmail } = req.body;
-        if (!amount || !userEmail) return res.status(400).json({ error: "Amount required" });
+        if (!amount || !userEmail || !date) return res.status(400).json({ error: "Amount required" });
 
         const newTax = new TaxPayment({
             amount,
-            date: date || new Date(),
+            date: date,
             notes,
             userEmail
         });
