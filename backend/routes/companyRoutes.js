@@ -20,6 +20,11 @@ router.get("/employees", async (req, res) => {
 router.post("/employees", async (req, res) => {
   try {
     const { name, position, salary, startDate, userEmail } = req.body;
+
+    console.log("📝 EMPLOYEE ADD ATTEMPT:");
+    console.log("1. Name:", name);
+    console.log("2. Start Date Received:", startDate); 
+    console.log("3. Type of Date:", typeof startDate);
     
     if (!name || !salary || !userEmail || !startDate) return res.status(400).json({ error: "Missing fields" });
 
