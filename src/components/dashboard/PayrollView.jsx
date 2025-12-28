@@ -51,7 +51,6 @@ const PayrollView = ({ employees, refreshData }) => {
             <input className="me-input" placeholder="Position" value={formData.position} onChange={e=>setFormData({...formData, position:e.target.value})} required />
             <input className="me-input" type="number" placeholder="Monthly Salary (₹)" value={formData.salary} onChange={e=>setFormData({...formData, salary:e.target.value})} required />
             
-            {/* 2. Start Date Input */}
             <div style={{display:'flex', flexDirection:'column'}}>
                 <label style={{color:'#aaa', fontSize:'0.8rem', marginBottom:'4px'}}>Start Date</label>
                 <input className="me-input" type="date" value={formData.startDate} onChange={e=>setFormData({...formData, startDate:e.target.value})} required/>
