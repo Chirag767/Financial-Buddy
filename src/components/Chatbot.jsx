@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import "../styles/chatbot.css";
 import ConfirmModal from "./ConfirmModal";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
 const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }) => {
   const email = localStorage.getItem("email");

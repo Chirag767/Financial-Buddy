@@ -12,7 +12,7 @@ import AiBuddyView from "../components/dashboard/AiBuddyView";
 import "../styles/individualdash.css";
 
 // --- FIX: USE DYNAMIC API URL ---
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
 const IndividualDashboard = () => {
   const navigate = useNavigate();

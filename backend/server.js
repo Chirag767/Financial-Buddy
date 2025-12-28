@@ -29,6 +29,14 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB Connection Failed:", err));
 
+// --- 5. Routes ---
+const expenseRoutes = require("./routes/expenseRoutes");
+const aiRoutes = require("./routes/aiRoutes");
+const incomeRoutes = require("./routes/incomeRoutes");
+const goalRoutes = require("./routes/goalRoutes");
+const bankRoutes = require("./routes/bankRoutes");
+const companyRoutes = require("./routes/companyRoutes");
+const User = require("./models/users");
 
 /* Auth Routes */
 app.post("/api/register", async (req, res) => {
