@@ -160,3 +160,125 @@
   font-style: italic;
   letter-spacing: 1px;
 }
+
+/* --- MOBILE RESPONSIVENESS (Phone Screens) --- */
+@media (max-width: 768px) {
+
+  /* 1. Layout Container */
+  .dashboard-container {
+    padding: 10px;
+    height: auto; /* Allow scrolling */
+    min-height: 100vh;
+    display: block; /* Stack everything */
+  }
+
+  /* 2. Header Improvements */
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .header-left-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .brand-section h1 {
+    font-size: 1.5rem; /* Smaller title */
+  }
+
+  .logout-btn {
+    width: 100%; /* Full width button */
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* 3. Navigation (Make it scrollable horizontally) */
+  .glass-nav {
+    display: flex;
+    overflow-x: auto; /* Scroll sideways */
+    white-space: nowrap;
+    padding: 10px 5px;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+  }
+  
+  .glass-nav::-webkit-scrollbar { 
+    display: none; /* Hide scrollbar Chrome/Safari */
+  }
+
+  .nav-item {
+    flex: 0 0 auto; /* Don't squish buttons */
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  /* 4. Stats Grid (Stack cards vertically) */
+  .ov-stats {
+    display: flex;
+    flex-direction: column; /* Stack 'em up */
+    gap: 15px;
+  }
+
+  .ov-card--stat {
+    width: 100%; /* Full width */
+  }
+
+  /* 5. Lists and Items (Payroll/Expenses) */
+  .ov-list {
+    max-height: none; /* Let lists expand fully on mobile */
+  }
+
+  .ov-item {
+    flex-direction: column; /* Stack info vertically */
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .ov-item__info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ov-item__amount {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Spread amount and delete btn */
+    align-items: center;
+    font-size: 1.2rem;
+    margin-top: 5px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* 6. Forms (Payroll/Manual Entry) */
+  .ov-card--main form {
+    flex-direction: column; /* Stack inputs */
+    align-items: stretch !important; /* Full width inputs */
+  }
+
+  .me-input {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+
+  .me-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  /* 7. Tax Section (Company Dashboard) */
+  .tax-section-container {
+      grid-template-columns: 1fr !important; /* Single column */
+  }
+}

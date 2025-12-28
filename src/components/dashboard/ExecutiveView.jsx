@@ -87,7 +87,7 @@ const ExecutiveView = ({ employees, invoices, expenses }) => {
       </div>
 
       {/* --- TAX SECTION --- */}
-      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'20px', marginTop:'20px'}}>
+      <div className="tax-section-container" style={{display:'grid', gap:'20px', marginTop:'20px'}}>
           
           {/* LEFT: Tax Summary & Payment Form */}
           <div className="ov-card ov-card--main">

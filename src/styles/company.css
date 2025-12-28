@@ -135,3 +135,9 @@
 .me-btn:hover {
     background-color: #2563eb;
 }
+
+.content-shell {
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll glitches */
+  padding-bottom: 80px; /* Space at bottom for scrolling */
+}
