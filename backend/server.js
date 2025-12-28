@@ -1,18 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-// NO cors import needed
 
 const app = express();
 
-// --- 1. FORCE HEADERS (Must be first) ---
+// --- 1. FORCE HEADERS ---
 app.use((req, res, next) => {
-  // Allow everyone
   res.header("Access-Control-Allow-Origin", "*"); 
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   
-  // Handle Preflight (The browser asking "Can I?" before sending data)
   if (req.method === "OPTIONS") {
     return res.sendStatus(200);
   }
@@ -22,30 +19,16 @@ app.use((req, res, next) => {
 // --- 2. Middleware ---
 app.use(express.json());
 
-// --- 3. Debugging Route (Test this in browser) ---
-app.get("/", (req, res) => {
-  res.send("Backend is running and accessible!");
-});
-
-// --- 4. Database Connection (With Error Handling) ---
+// --- 4. Database Connection  ---
 if (!process.env.MONGO_URI) {
   console.error("❌ FATAL ERROR: MONGO_URI is missing in Environment Variables!");
-  process.exit(1); // Stop server if no DB
+  process.exit(1);
 }
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB Connection Failed:", err));
 
-// --- 5. Routes ---
-// Ensure these files exist and are correct!
-const expenseRoutes = require("./routes/expenseRoutes");
-const aiRoutes = require("./routes/aiRoutes");
-const incomeRoutes = require("./routes/incomeRoutes");
-const goalRoutes = require("./routes/goalRoutes");
-const bankRoutes = require("./routes/bankRoutes");
-const companyRoutes = require("./routes/companyRoutes");
-const User = require("./models/users");
 
 /* Auth Routes */
 app.post("/api/register", async (req, res) => {
@@ -53,7 +36,6 @@ app.post("/api/register", async (req, res) => {
     const { email, userType, companyName } = req.body;
     if (!email) return res.status(400).json({ error: "Email missing" });
     
-    // Check existing
     let user = await User.findOne({ email });
     if (user) return res.status(200).json({ message: "User exists" });
 

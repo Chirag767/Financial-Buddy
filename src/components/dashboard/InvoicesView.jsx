@@ -9,7 +9,7 @@ const InvoicesView = ({ invoices, refreshData }) => {
     e.preventDefault();
     const userEmail = localStorage.getItem("email");
     try {
-      await addInvoice({ ...data, userEmail, dueDate: new Date() }); // simplified date
+      await addInvoice({ ...data, userEmail, dueDate: new Date() });
       setData({ clientName: "", amount: "", status: "Pending" });
       refreshData();
       toast.success("Invoice Created");

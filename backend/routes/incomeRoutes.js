@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   try {
     const { userEmail } = req.query;
     if (!userEmail) return res.status(400).json({ error: "Email required" });
-    const incomes = await Income.find({ userEmail }).sort({ date: -1 }); // Sort by DATE
+    const incomes = await Income.find({ userEmail }).sort({ date: -1 });
     res.json(incomes);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch incomes" });

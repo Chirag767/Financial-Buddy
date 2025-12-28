@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   try {
     const { userEmail, userType } = req.query;
     if (!userEmail) return res.status(400).json({ error: "User email is required" });
-    const expenses = await Expense.find({ userEmail, userType }).sort({ date: -1 }); // Sort by DATE, not createdAt
+    const expenses = await Expense.find({ userEmail, userType }).sort({ date: -1 });
     res.json(expenses);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch expenses" });
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 // POST Expense 
 router.post("/", async (req, res) => {
   try {
-    // 1. Destructure 'date' from the body
+    // 1. Destructure date from the body
     const { title, amount, category, frequency, date, userEmail, userType } = req.body;
 
     if (!title || !amount || !userEmail) {

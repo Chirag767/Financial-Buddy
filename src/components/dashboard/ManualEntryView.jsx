@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 const ManualEntryView = ({ refreshData }) => {
   const [loading, setLoading] = useState(false);
 
-  // Helper to get today's date in 'YYYY-MM-DD' format for the input default
   const getToday = () => {
     const d = new Date();
     return new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().split("T")[0];

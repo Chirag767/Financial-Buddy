@@ -33,7 +33,7 @@ const ExecutiveView = ({ employees, invoices, expenses }) => {
         await addTaxPayment({ ...newTax, userEmail: email });
         toast.success("Tax payment recorded");
         setNewTax({ amount: "", date: "", notes: "" });
-        fetchTaxes(); // Refresh list
+        fetchTaxes();
     } catch (error) {
         toast.error("Failed to record");
     } finally {
@@ -47,7 +47,7 @@ const ExecutiveView = ({ employees, invoices, expenses }) => {
       .reduce((sum, i) => sum + Number(i.amount), 0);
 
     const opex = expenses.reduce((sum, e) => sum + Number(e.amount), 0);
-    const payroll = employees.reduce((sum, e) => sum + Number(e.salary), 0) * 12; // Annualized
+    const payroll = employees.reduce((sum, e) => sum + Number(e.salary), 0) * 12;
 
     const netProfit = revenue - payroll - opex;
 

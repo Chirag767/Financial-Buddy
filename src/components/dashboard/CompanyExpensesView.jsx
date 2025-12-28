@@ -22,12 +22,9 @@ const CompanyExpensesView = ({ expenses, refreshData }) => {
     const email = localStorage.getItem("email");
 
     try {
-      // Reusing the standard addExpense API but passing userType='company'
-      // We append the 'type' (OpEx/CapEx) to the title or category for simple tracking, 
-      // or just rely on the category.
       await addExpense({
         ...formData,
-        category: `${formData.category} (${formData.type})`, // Small hack to see type in list
+        category: `${formData.category} (${formData.type})`,
         userEmail: email,
         userType: "company",
         frequency: "one-time"

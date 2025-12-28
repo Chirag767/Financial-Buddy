@@ -15,7 +15,7 @@ const OverviewView = ({ expenses, incomes, goals }) => {
   } = useMemo(() => {
     const currentDate = new Date();
 
-    // --- HELPER: Calculate Multiplier based on time passed ---
+    // --- Calculate Multiplier based on time passed ---
     const getMultiplier = (frequency, dateStr) => {
       const startDate = new Date(dateStr);
       if (frequency === "monthly") {

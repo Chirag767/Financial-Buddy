@@ -135,10 +135,6 @@ const UpcomingBillsView = ({ goals, refreshData }) => {
                       <span className="ub-item-total">₹{Number(goal.targetAmount).toLocaleString()}</span>
                       <span className="ub-item-date">By {new Date(goal.targetDate).toLocaleDateString()}</span>
                     </div>
-                    {/* <div className="ub-item-footer">
-                      <p>Monthly Savings Needed:</p>
-                      <span className="ub-item-monthly">₹{Number(monthlyNeed).toLocaleString()}/mo</span>
-                    </div> */}
                   </div>
                 );
               })}

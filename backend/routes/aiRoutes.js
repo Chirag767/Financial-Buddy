@@ -2,10 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Initialize Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// --- HELPER: Safe Date Formatter ---
+// --- Safe Date Formatter ---
 const formatDate = (dateInput) => {
   try {
     const d = new Date(dateInput);
