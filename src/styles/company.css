@@ -30,6 +30,14 @@
     color: #fbbf24; /* Amber/Gold for Taxes */
 }
 
+.tax-section-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+}
+
 /* =========================================
    3. PAYROLL & EMPLOYEE LIST
    ========================================= */

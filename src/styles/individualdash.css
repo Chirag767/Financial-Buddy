@@ -127,6 +127,14 @@
   padding: 6px;
   border-radius: 14px;
   margin-bottom: 40px;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
+  
+  /* --- Visual hint that there is more --- */
+  padding-right: 40px; /* Adds empty space at the end so the last item isn't flush */
+  mask-image: linear-gradient(to right, black 90%, transparent 100%); /* Fades the right edge */
+  -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
 }
 
 .nav-item {

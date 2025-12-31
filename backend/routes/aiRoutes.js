@@ -42,11 +42,20 @@ router.post("/chat", async (req, res) => {
        `[GOAL] ${g.title}: Target ₹${g.targetAmount} by ${formatDate(g.targetDate)} (Priority: ${g.priority})`
     ).join("\n");
 
-    // 2. The "Mega-Prompt"
-    // 2. The "Mega-Prompt" - Optimized for Financial Analysis
+    const today = new Date().toLocaleDateString('en-IN', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+
     const systemPrompt = `
     You are an expert Financial Analyst & Advisor for a(n) ${userType}.
     Your goal is to provide actionable insights, not just summaries.
+
+    --- CRITICAL CONTEXT ---
+    TODAY'S DATE: ${today}
+    (Use this date to determine if an expense is "Past" or "Upcoming". If an expense date is before today, it is ALREADY PAID.)
 
     TONE:
     - If 'company': Professional, concise, strategic, risk-aware. Focus on margins, burn rate, and tax liability.
@@ -63,6 +72,7 @@ router.post("/chat", async (req, res) => {
     ${goalSummary || "No goals set."}
 
     --- GUIDELINES ---
+    0. Don't give very huge reports unless user questions reuire that. Keep the length reasonable.
     1. **Analysis First:** Don't just list data. Explain *what it means*. (e.g., "Your rent is 40% of income, which is high.")
     2. **Burn Rate (For Companies):** If expenses > income, calculate how long until they run out of cash (if cash info is available) or warn them urgently.
     3. **Net Profit/Savings:** Always calculate the gap between Income and Expenses in your head and mention it.

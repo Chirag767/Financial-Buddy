@@ -77,7 +77,7 @@ const Chatbot = ({ expenses, incomes = [], goals = [], userType = "individual" }
   };
 
   const confirmClear = () => {
-    const initialMsg = [{ id: 1, text: "History cleared. How can I help?", sender: "bot" }];
+    const initialMsg = [{ id: 1, text: "How can I help?", sender: "bot" }];
     setMessages(initialMsg);
     localStorage.setItem(storageKey, JSON.stringify(initialMsg));
     setShowClearModal(false);
